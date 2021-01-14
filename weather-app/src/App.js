@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { Navbar, Search } from "./components";
+import { Navbar, Search, WeatherCard } from "./components";
 import axios from "axios";
 import apiKey from "./apikey";
 
@@ -31,6 +31,7 @@ function App() {
       <Navbar />
       <div className="container">
         <Search />
+        <WeatherCard weather={weather} />
       </div>
     </div>
   );
