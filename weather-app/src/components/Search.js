@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Search = () => {
   const [searchText, setSearchText] = useState();
+  console.log(searchText);
   return (
     <div>
       <form className="form">
