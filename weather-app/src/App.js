@@ -9,21 +9,15 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const getWeather = async () => {
-      try {
-        setLoading(true);
-        const res = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=hyderabad&appid=${apiKey}`
-        );
-        console.log(res);
-        setWeather(res.data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-      }
-    };
-    getWeather();
+    (async function () {
+      setLoading(true);
+      const res = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=hyderabad&appid=${apiKey}`
+      );
+      console.log("apiresponse", res);
+      setWeather(res.data);
+      setLoading(false);
+    })();
   }, []);
 
   return (
@@ -31,7 +25,7 @@ function App() {
       <Navbar />
       <div className="container">
         <Search />
-        <WeatherCard weather={weather} />
+        <WeatherCard weather={weather} loading={loading} />
       </div>
     </div>
   );
