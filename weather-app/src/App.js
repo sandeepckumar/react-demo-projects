@@ -14,17 +14,30 @@ function App() {
       const res = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=hyderabad&appid=${apiKey}`
       );
-      console.log("apiresponse", res);
       setWeather(res.data);
       setLoading(false);
     })();
   }, []);
 
+  const getTemp = async (city) => {
+    try {
+      setLoading(true);
+      setWeather({});
+      const res = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+      );
+      setWeather(res.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="App">
       <Navbar />
       <div className="container">
-        <Search />
+        <Search getTemp={getTemp} />
         <WeatherCard weather={weather} loading={loading} />
       </div>
     </div>

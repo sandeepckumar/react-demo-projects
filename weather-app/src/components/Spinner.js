@@ -1,10 +1,14 @@
-import spinner from "./Spinner.png";
+import spinner from "./loading.png";
 import React from "react";
 
 const Spinner = () => {
   return (
     <>
-      <image src={spinner} alt="loading" />
+      <img
+        src={spinner}
+        alt="loading"
+        style={{ width: "200px", margin: "auto", display: "block" }}
+      />
     </>
   );
 };

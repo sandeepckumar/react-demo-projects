@@ -1,27 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import Spinner from "./Spinner";
+import Celcius from "./Celcius";
+import Fahren from "./fahren";
 
-const WeatherCard = ({ weather }) => {
-  console.log("weather from weather", weather);
+const WeatherCard = ({ weather, loading }) => {
   const { name, sys, main } = weather;
-  const kel_to_cel = (k) => {
-    return (k - 273.15).toFixed(2);
-  };
+  const [cel, setCel] = useState(true);
 
   return (
     <>
-      {name && (
+      {loading ? (
+        <Spinner />
+      ) : (
         <>
-          <div className="card text-center">
-            <h1>
-              {name}, {sys?.country}
-            </h1>
-            <h3>Current Temperature: {kel_to_cel(main?.temp)}°C</h3>
-            <h3>
-              Min: {kel_to_cel(main?.temp_min)}°C Max:{" "}
-              {kel_to_cel(main?.temp_max)}°C Feels Like:{" "}
-              {kel_to_cel(main?.feels_like)}°C
-            </h3>
-          </div>
+          {cel ? (
+            <div className="card text-center" onClick={() => setCel(!cel)}>
+              <h1>
+                {name}, {sys?.country}
+              </h1>
+              <Celcius
+                temp={main?.temp}
+                min={main?.temp_min}
+                max={main?.temp_max}
+                feels_like={main?.feels_like}
+              />
+            </div>
+          ) : (
+            <div className="card text-center" onClick={() => setCel(!cel)}>
+              <h1>
+                {name}, {sys?.country}
+              </h1>
+              <Fahren
+                temp={main?.temp}
+                min={main?.temp_min}
+                max={main?.temp_max}
+                feels_like={main?.feels_like}
+              />
+            </div>
+          )}
         </>
       )}
     </>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Search = () => {
+const Search = ({ getTemp }) => {
   const [searchText, setSearchText] = useState();
 
   return (
@@ -13,7 +13,14 @@ const Search = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         ></input>
-        <input type="submit" onClick="" className="btn btn-dark btn-block" />
+        <input
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            getTemp(searchText);
+          }}
+          className="btn btn-dark btn-block"
+        />
       </form>
     </div>
   );
