@@ -6,6 +6,11 @@ import Fahren from "./fahren";
 const WeatherCard = ({ weather, loading }) => {
   const { name, sys, main } = weather;
   const [cel, setCel] = useState(true);
+  const styles = {
+    background: "#343d46",
+    "border-radius": "10px 10px",
+    color: "white",
+  };
 
   return (
     <>
@@ -14,7 +19,11 @@ const WeatherCard = ({ weather, loading }) => {
       ) : (
         <>
           {cel ? (
-            <div className="card text-center" onClick={() => setCel(!cel)}>
+            <div
+              className="card text-center"
+              onClick={() => setCel(!cel)}
+              style={styles}
+            >
               <h1>
                 {name}, {sys?.country}
               </h1>
@@ -26,7 +35,11 @@ const WeatherCard = ({ weather, loading }) => {
               />
             </div>
           ) : (
-            <div className="card text-center" onClick={() => setCel(!cel)}>
+            <div
+              className="card text-center"
+              onClick={() => setCel(!cel)}
+              style={styles}
+            >
               <h1>
                 {name}, {sys?.country}
               </h1>

@@ -1,16 +1,36 @@
 import React from "react";
 
-const Celcius = ({ temp, min, max, feels_like }) => {
-  const kel_to_cel = (k) => {
-    return (k - 273.15).toFixed(2);
+const Celcius = ({ min, max, temp, feels_like }) => {
+  const userStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(3,1fr)",
+    gridGap: "1rem",
+  };
+  const color = {
+    background: "#65737e",
+    "border-radius": "10px 10px",
   };
   return (
     <>
-      <h3>Current Temperature: {kel_to_cel(temp)}°C | °F</h3>
-      <h3>
-        Min: {kel_to_cel(min)}°C Max: {kel_to_cel(max)}°C Feels Like:{" "}
-        {kel_to_cel(feels_like)}°C
-      </h3>
+      <div className="card text-center" style={color}>
+        <h2>Current Temperature: {temp}°C | °F</h2>
+      </div>
+      <div style={userStyle}>
+        <div className="card text-center" style={color}>
+          <h3>Min</h3>
+          <h2>{min}°C</h2>
+        </div>
+
+        <div className="card text-center" style={color}>
+          <h3>Max</h3>
+          <h2>{max}°C</h2>
+        </div>
+
+        <div className="card text-center" style={color}>
+          <h3>Feels Like</h3>
+          <h2>{feels_like}°C</h2>
+        </div>
+      </div>
     </>
   );
 };
